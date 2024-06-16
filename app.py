@@ -104,14 +104,14 @@ if st.sidebar.button("Lưu id sản phẩm"):
 
     df = pd.DataFrame(product_id)
     df.to_csv('product_id_ncds.csv', index=False)
-    st.write("Kết quả đã được lưu vào file product_id_ncds.csv")
         # Xem sản phẩm
     headers2 = {
-        'User-Agent': user_agent,
-        'Accept': accept,
-        'Accept-Language': accept_language,
+        'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
+        'Accept': 'application/json, text/plain, */*',
+        'Accept-Language':'en-US,en;q=0.9,vi;q=0.8',
         'Referer': 'https://tiki.vn/apple-iphone-11-p184036446.html?spid=32033721',
-        'x-guest-token': x_guest_token,
+        'x-guest-token': 'OrALSigQ1ofYvNdzewknbh5DKTtm3HWj',
+
     }
 
     params2 = (
@@ -150,10 +150,9 @@ if st.sidebar.button("Lưu id sản phẩm"):
             # time.sleep(random.randrange(3, 5))
     df_product = pd.DataFrame(result)
     df_product.to_csv('crawled_data.csv', index=False, encoding='utf-8-sig')
-
+    st.write('Đã lấy data thành công')
 pd.set_option('display.max_colwidth', None)
 # # Xem sản phẩm
-
 if st.sidebar.button("Xem sản phẩm"):
     
     header_placeholder.empty()
@@ -359,11 +358,6 @@ if st.sidebar.button("Dự đoán giá giảm"):
     st.pyplot(plt)
     st.markdown(f"<h6 style='text-align: center;color: green'>Độ chính xác mô hình là:{accuracy}</h6>", unsafe_allow_html=True)
 
-    st.markdown("<h3 style='text-align: center;color: red'>Kết quả dự đoán giá trị</h3>", unsafe_allow_html=True)
-    st.title("Dự đoán giá sản phẩm")
-    st.write("Nhập các thuộc tính để dự đoán giá sản phẩm")
-
-    
 
     input_data = pd.DataFrame({
         'price': [price],
