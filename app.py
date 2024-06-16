@@ -44,7 +44,7 @@ step6_placeholder.write('Bước 6: Nhấn chọn "Xem sản phẩm" để lấy
 
 csv_file = 'crawled_data.csv'
 # Sidebar
-st.sidebar.markdown('__Phân tích sản phẩm tiki__ ')
+st.sidebar.markdown('__📅Phân tích sản phẩm tiki__ ')
 st.sidebar.markdown('')
 
 # Hiển thị/collapse trường đầu vào cho giá trị của headers
@@ -61,8 +61,9 @@ with st.sidebar.expander("Params2"):
     spid = st.text_input("spid")
     version = st.text_input("version")
 
+
 # Tạo nút "Lưu sản phẩm"
-if st.sidebar.button("Lưu id sản phẩm"):
+if st.sidebar.button("🛒Lấy sản phẩm"):
     header_placeholder.empty()
     step1_placeholder.empty()
     image1_placeholder.empty()
@@ -153,7 +154,7 @@ if st.sidebar.button("Lưu id sản phẩm"):
     st.write('Đã lấy data thành công')
 pd.set_option('display.max_colwidth', None)
 # # Xem sản phẩm
-if st.sidebar.button("Xem sản phẩm"):
+if st.sidebar.button("📟Xem sản phẩm"):
     
     header_placeholder.empty()
     step1_placeholder.empty()
@@ -335,6 +336,7 @@ if st.sidebar.button("Dự đoán giá giảm"):
     df_product = df_product.dropna()
     X = df_product[['price', 'discount_rate', 'rating_average', 'review_count']]
     y = df_product['discount']
+    
     # Tách dữ liệu thành tập huấn luyện và tập kiểm tra
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -428,6 +430,7 @@ if st.sidebar.button("Gợi ý sản phẩm"):
 
     tf = TfidfVectorizer()
     tfMatrix = tf.fit_transform(df_product['combined_feature'])
+    # Tính toán ma trận tương đồng cosine
     similarity_matrix = cosine_similarity(tfMatrix)
 
     def recommend(product):
